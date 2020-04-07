@@ -1,0 +1,2 @@
+\babel@toc {ngerman}{}
+\contentsline {section}{Inhaltsverzeichnis}{1}{section*.1}
