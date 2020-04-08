@@ -14,6 +14,10 @@ abgearbeitete Meilensteine sind mit einem {chk} gekennzeichnet.
 | Meilenstein
 
 | {chk}
+| 29.03.
+| (*Projektstart*) Vergabe der Themen
+
+| {chk}
 | 09.04.
 | Einleitung, Problembeschreibung, Motivation für PHOABE abgeschlossen
 
@@ -48,5 +52,5 @@ single-authority, Überblick über PHOABE abgeschlossen
 
 | 
 | 07.06.
-| Ausarbeitung fertig (Projektabschluss)
+| (*Projektabschluss*) Ausarbeitung fertig
 |===
