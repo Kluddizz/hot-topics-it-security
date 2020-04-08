@@ -10,7 +10,7 @@ abgearbeitete Meilensteine sind mit einem {chk} gekennzeichnet.
 [cols="5, 10, 85", options="header"]
 |===
 | 
-| Datum
+| Fälligkeitsdatum
 | Meilenstein
 
 | {chk}
