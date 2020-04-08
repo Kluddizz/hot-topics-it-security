@@ -1,36 +1,48 @@
 = Zeitmanagement
 Florian Hansen <flhansen.93@gmail.com>
 
-[cols="1, 7", options="header"]
+:chk: &#10004;
+
+[cols="5, 10, 85", options="header"]
 |===
+| 
 | Datum
 | Meilenstein
 
+| {chk}
 | 09.04.
 | Einleitung, Problembeschreibung, Motivation für PHOABE abgeschlossen
 
+| 
 | 16.04.
 |	Attribute Based Encryption (KP-ABE, CP-ABE), multi-authority,
 single-authority, Überblick über PHOABE abgeschlossen
 
+| 
 | 26.04.
 | Überarbeitung und Abgabe der ersten Version der Ausarbeitung abgeschlossen
 
+| 
 | 03.05.
 | Überblick und Einarbeitung vorhandener Implementationen abgeschlossen
 
+| 
 | 10.05.
 | Planung der Änderungsarbeiten abgeschlossen
 
+| 
 | 17.05.
 | Dokumentation der auszuführenden Änderungsarbeiten abgeschlossen
 
+| 
 | 24.05.
 | Implementation (1. Version) abgeschlossen
 
+| 
 | 31.05.
 | Implementation (Endversion) abgeschlossen
 
+| 
 | 07.06.
 | Ausarbeitung fertig (Projektabschluss)
 |===
