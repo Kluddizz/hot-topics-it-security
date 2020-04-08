@@ -2,3 +2,5 @@ reports/**/*
 !reports/**/*.tex
 !reports/**/*.pdf
 !reports/**/*.bib
+!reports/**/*.adoc
+!reports/**/*.html
