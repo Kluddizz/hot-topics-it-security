@@ -1,7 +1,11 @@
-= Zeitmanagement
+= Dokumentation
 Florian Hansen <flhansen.93@gmail.com>
 
 :chk: &#10004;
+
+== Zeitmanagement
+Die folgende Liste stellt die Meilensteine des Projektes dar. Fertig
+abgearbeitete Meilensteine sind mit einem {chk} gekennzeichnet.
 
 [cols="5, 10, 85", options="header"]
 |===
