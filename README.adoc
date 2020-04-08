@@ -39,12 +39,12 @@ single-authority, Überblick über PHOABE abgeschlossen
 | Planung der Änderungsarbeiten abgeschlossen
 
 | 
-| 17.05.
-| Dokumentation der auszuführenden Änderungsarbeiten abgeschlossen
-
-| 
 | *24.05.*
 | Implementation (1. Version) abgeschlossen
+
+| 
+| 27.05.
+| Dokumentation der Änderungsarbeiten abgeschlossen
 
 | 
 | 31.05.
