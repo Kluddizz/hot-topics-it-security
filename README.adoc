@@ -14,7 +14,7 @@ abgearbeitete Meilensteine sind mit einem {chk} gekennzeichnet.
 | Meilenstein
 
 | {chk}
-| 29.03.
+| *29.03.*
 | (*Projektstart*) Vergabe der Themen
 
 | {chk}
@@ -27,7 +27,7 @@ abgearbeitete Meilensteine sind mit einem {chk} gekennzeichnet.
 single-authority, Überblick über PHOABE abgeschlossen
 
 | 
-| 26.04.
+| *26.04.*
 | Überarbeitung und Abgabe der ersten Version der Ausarbeitung abgeschlossen
 
 | 
@@ -43,7 +43,7 @@ single-authority, Überblick über PHOABE abgeschlossen
 | Dokumentation der auszuführenden Änderungsarbeiten abgeschlossen
 
 | 
-| 24.05.
+| *24.05.*
 | Implementation (1. Version) abgeschlossen
 
 | 
@@ -51,6 +51,6 @@ single-authority, Überblick über PHOABE abgeschlossen
 | Implementation (Endversion) abgeschlossen
 
 | 
-| 07.06.
+| *07.06.*
 | (*Projektabschluss*) Ausarbeitung fertig
 |===
