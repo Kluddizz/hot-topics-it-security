@@ -4,3 +4,4 @@ docs/**/*.*
 !docs/**/*.tex
 !docs/**/*.pdf
 !docs/**/*.bib
+!docs/images/*.*
