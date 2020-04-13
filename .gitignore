@@ -1,6 +1,7 @@
 **/*.swp
 
 docs/**/*.*
+!docs/**/*.cls
 !docs/**/*.tex
 !docs/**/*.pdf
 !docs/**/*.bib
