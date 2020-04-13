@@ -1,6 +1,6 @@
 **/*.swp
 
-reports/**/*.*
-!reports/**/*.tex
-!reports/**/*.pdf
-!reports/**/*.bib
+docs/**/*.*
+!docs/**/*.tex
+!docs/**/*.pdf
+!docs/**/*.bib

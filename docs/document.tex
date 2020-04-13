@@ -1,41 +1,29 @@
-\documentclass[format=sigconf]{acmart}
+\documentclass{hsflensburg}
 \title{Wissenschaftliche Ausarbeitung}
 \subtitle{PHOABE: Policy-Hidden Outsourced Attribute Based Encryption}
 
 % Authors
-\author{Florian Hansen}
-\affiliation{
-	680169,
+\author{
+	\name{Florian Hansen}\\
   \institution{Hochschule Flensburg}
 }
-\email{florian.hansen@stud.hs-flensburg.de}
 
 % Packages
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
-
-% Remove additional information of ACM
-\settopmatter{printacmref=false}
-\renewcommand\footnotetextcopyrightpermission[1]{}
-\pagestyle{plain}
-
-% Line indentation and spacing
-\setlength{\parindent}{0cm}
-\setlength{\parskip}{0.15cm}
-
 \begin{document}
+	\maketitle
 	\begin{abstract}
 	\end{abstract}
-	\maketitle
 
 	\section{Einleitung}
-	Diese wissenschaftliche Ausarbeitung wird im Rahmen der
-	Hochschulveranstaltung \textit{Hot-Topics in der IT-Security} angefertigt und
-	handelt über den sicheren Datenaustausch zwischen Internet-of-Things-Geräten.
-	Besonders wird hierbei auf die Attribute Based Encryption (ABE) eingegangen,
-	welche ein relativ junges Forschungsgebiet der Kryptographie darstellt. Es
-	existieren zwar einige ABE-Schemata, diese sind jedoch für leistungsschwache
-	Geräte eher ungeeignet.
+	Diese wissenschaftliche Ausarbeitung wird im Rahmen der Hochschulveranstaltung
+	\textit{Hot-Topics in der IT-Security} angefertigt und handelt über den
+	sicheren Datenaustausch zwischen Internet-of-Things-Geräten.  Besonders wird
+	hierbei auf die Attribute Based Encryption (ABE) eingegangen, welche ein
+	relativ junges Forschungsgebiet der Kryptographie darstellt. Es existieren
+	zwar einige ABE-Schemata, diese sind jedoch für leistungsschwache Geräte eher
+	ungeeignet.
 
 	Diese Ausarbeitung beschäftigt sich hauptsächlich mit der Arbeit von
 	\cite{phoabe}, welche ein neues attribut-basiertes Verschlüsselungsschema
@@ -45,8 +33,8 @@
 	können. Zusätzlich fordert das Schema eine Auslagerung des
 	Entschlüsselungsvorganges, welches aufgrund von bilinearen Abbildungen relativ
 	rechenintensiv ist. Hierbei sollen sogenannte \textit{Semi-trusted Cloud
-	Server} den aufwändigen Teil der Berechnung übernehmen, damit auch
-	leistungsschwache Geräte solche attribut-basierte Verschlüsselungen
+	Server} den aufwändigen Teil der Berechnung über\-nehmen, damit auch
+	leistungsschwache Geräte solche attribut-basierte Ver\-schlüs\-sel\-ung\-en
 	durchführen können.
 
 	\section{Problembeschreibung}
@@ -56,10 +44,9 @@
 	Smartphones und Sensoren, die ständig miteinander kommunizieren müssen bzw.
 	sollen. Grundsätzlich können IoT-Anwendungen aufgrund ihrer
 	Kommunikationsfähigkeit in zwei Bereiche eingeteilt werden. In
-	Einzelanwendungen benötigen man lediglich eine Autorität
-	(\textit{single-authority}), während es auch Anwendungsfälle gibt, die über
-	unterschiedliche Bereiche bzw. Domänen kommunizieren müssen. Diese besitzen
-	damit mehrere Autoritäten (\textit{multi-authority}).
+	Einzelanwendungen be\-nö\-ti\-gen man lediglich eine Autorität während es auch
+	Anwendungsfälle gibt, die über unterschiedliche Bereiche bzw. Domänen
+	kommunizieren müssen. Diese besitzen damit mehrere Autoritäten.
 
 	Beide Formen von IoT haben eins gemeinsam. Sie müssen einen sicheren Austausch
 	von Daten und die Sicherung der Privatsphäre gewährleisten. Hierfür werden
@@ -120,10 +107,9 @@
 	\subsection{Multi-Authority}
 
 	\section{Policy-Hidden Outsourced ABE}
-
 	\section{Fazit und Ausblick}
 
 	\bibliography{literatur}
-	\bibliographystyle{acm}
+	\bibliographystyle{abbrv}
 \end{document}
 
