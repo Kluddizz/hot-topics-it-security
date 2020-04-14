@@ -126,7 +126,7 @@
 	als dass alle Obermengen jedes Elements $B \in \mathbb{A}$ verteten sein
 	müssen. Im Folgenden soll ein Beispiel dies verdeutlichen.
 
-	\begin{example}[Zugriffsstrukturen]
+	\begin{example}
 		Sei $\mathbb{U} = \left\{ 1, 2, 3, 4 \right\}$ ein Universum und $\mathbb{A}
 		\subseteq 2^\mathbb{U}$ eine Zugriffsstruktur.
 
@@ -140,9 +140,52 @@
 	\end{example}
 
 	\subsection{Bilineare Abbildungen}
+	\begin{definition}[Bilineare Abbildungen \cite{abe}]
+		Sei $\mathbb{P}$ die Menge aller Primzahlen und $\mathbb{G}$, $\mathbb{G}_T$
+		zwei multiplikative zyklische Gruppen mit einer Ordnung $p \in \mathbb{P}$.
+		Sei $g$ ein Generator von $\mathbb{G}$ und $e: \mathbb{G} \times \mathbb{G}
+		\to \mathbb{G}_T$ eine bilineare Abbildung mit folgenden Eigenschaften.
+
+		\begin{enumerate}
+			\item Bilinearität: $\forall u, v \in \mathbb{G},\;\; \forall a, b \in
+				\mathbb{Z}_p. \;\; e(u^a, v^b) = e(u, v)^{ab}$
+			\item Nicht-Entartung: $e(g, g) \neq 1$
+			\item Effizient Berechenbar: Die Gruppenoperation von $\mathbb{G}$ und die
+				bilineare Abbildung $e$ sind effizient berechenbar.
+		\end{enumerate}
+	\end{definition}
+
+	\begin{example}
+		Sei $(G, +)$ eine Gruppe und $x, y, z \in G$. Sei $(G_T, *)$ eine multiplikative
+		Gruppe und $e: G \times G \to G_T$ eine bilineare Abbilding. Dann gilt
+
+		$e(3x, y) = e(x+x+x, y) = e(x, y) * e(x, y) * e(x, y) = e(x, y)^3 = e(x,
+		3y)$.
+	\end{example}
 
 	\section{Attribute Based Encryption (ABE)}
 	\subsection{Key-Policy ABE}
+	Ein Key-Policy ABE-Schema besteht aus insgesamt vier Algorithmen \cite{kp-abe}.
+
+	\begin{enumerate}
+		\item $\textit{Setup}\left(n\right) \to \left(PK, SK_M\right)$: Dieser
+			Algorithmus nimmt als Eingabe den Sicherheitsparameter $n$ und liefert als
+			Ergebnis eine Menge bestehend aus öffentlichen Parametern $PK$, sowie
+			einen Master-Secret-Key $SK_M$.
+		\item $\textit{KeyGen}\left(\mathbb{A}, SK_M\right) \to SK$: Als Eingabe
+			nimmt dieser Algorithmus die Zu\-griffs\-struktur $\mathbb{A}$ und den
+			Master-Secret-Key $SK_M$. Es wird ein privater Schlüssel $SK$
+			zurückgegeben.
+		\item $Enc\left(m, A, PK\right) \to c$: Der Verschlüsselungsalgorithmus
+			nimmt als Eingabe die Nachricht $m$, eine nicht-leere Menge von Attributen
+			$A$ und die öffentlichen Parameter $PK$. Als Ausgabe wird ein Chiffrat $c$
+			erzeugt.
+		\item $Dec\left(c, SK\right) \to \left\{m, \bot\right\}$: Dieser Algorithmus
+			nimmt als Eingabe ein Chiffrat $c$ und den privaten Schlüssel $SK$. Als
+			Ausgabe wird die Nachricht $m$ oder ein Fehler (dargestellt als $\bot$)
+			erzeugt.
+	\end{enumerate}
+
 	\subsection{Ciphertext-Policy ABE}
 	\subsection{Single-Authority}
 	\subsection{Multi-Authority}
@@ -150,6 +193,7 @@
 	\section{Policy-Hidden Outsourced ABE}
 	\section{Fazit und Ausblick}
 
+	\newpage
 	\bibliography{literatur}
 	\bibliographystyle{abbrv}
 \end{document}
