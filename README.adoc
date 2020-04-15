@@ -21,34 +21,26 @@ abgearbeitete Meilensteine sind mit einem {chk} gekennzeichnet.
 | 09.04.
 | Einleitung, Problembeschreibung, Motivation für PHOABE abgeschlossen
 
-| 
+| {chk}
 | 16.04.
-|	Attribute Based Encryption (KP-ABE, CP-ABE), multi-authority,
-single-authority, Überblick über PHOABE abgeschlossen
+|	Bilineare Abbildungen, Zugriffsstrukturen, LSSS, Überblick über KP-ABE und
+CP-ABE abgeschlossen
 
 | 
 | *26.04.*
-| Überarbeitung und Abgabe der ersten Version der Ausarbeitung abgeschlossen
-
-| 
-| 03.05.
-| Überblick und Einarbeitung vorhandener Implementationen abgeschlossen
+| Single- und Multi-Authority, Überblick über PHOABE abgeschlossen
 
 | 
 | 10.05.
-| Planung der Änderungsarbeiten abgeschlossen
+| Einarbeitung in die Algorithmen von PHOABE abgeschlossen
 
 | 
 | *24.05.*
-| Implementation (1. Version) abgeschlossen
-
-| 
-| 27.05.
-| Dokumentation der Änderungsarbeiten abgeschlossen
+| Sicherheitsbeweise der Algorithmen von PHOABE nachvollzogen
 
 | 
 | 31.05.
-| Implementation (Endversion) abgeschlossen
+| Dokumentation über PHOABE abgeschlossen
 
 | 
 | *07.06.*

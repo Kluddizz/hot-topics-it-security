@@ -139,6 +139,23 @@
 		Obermengen der Elemente von $\mathbb{A}$ vorhanden sind.
 	\end{example}
 
+	\begin{definition}[Linear Secret-Sharing Schemes \cite{abe}]
+		Ein Linear Secret-Sharing Scheme (LSSS) über eine Menge von Parteien $P$ ist
+		linear, wenn
+
+		\begin{enumerate}
+			\item Die Anteile (shares) für jede Partei einen Vektor $\vec{v} \in
+				\mathbb{Z}_p^{n+1}$ formen.
+			\item Eine Matrix $M$ existiert, die $l$ Zeilen und $n+1$ Spalten enthält.
+				Jede $i$-te Zeile aus $M$ mit $i \in \left\{1, ..., l\right\}$ ist dann
+				mit einer Partei $x_i \in P$ beschriftet. Wenn wir den Spaltenvektor $v =
+				\left(s, r_1, r_2, ..., r_n\right)$ betrachten, wobei $s \in \mathbb{Z}_p$ das zu
+				teilende Geheimnis ist und $r_1, ..., r_n \in \mathbb{Z}_p$ zufällig
+				gewählt werden, dann ist $Mv$ ein Vektor bestehend aus $l$ Anteilen des
+				Geheimisses $s$.
+		\end{enumerate}
+	\end{definition}
+
 	\subsection{Bilineare Abbildungen}
 	\begin{definition}[Bilineare Abbildungen \cite{abe}]
 		Sei $\mathbb{P}$ die Menge aller Primzahlen und $\mathbb{G}$, $\mathbb{G}_T$
@@ -187,6 +204,27 @@
 	\end{enumerate}
 
 	\subsection{Ciphertext-Policy ABE}
+	Ein Ciphertext-Policy ABE-Schema besteht aus insgesamt vier Algorithmen
+	\cite{cp-abe}.
+
+	\begin{enumerate}
+		\item $\textit{Setup}\left(n\right) \to \left(PK, SK_M\right)$: Dieser
+			Algorithmus nimmt als Eingabe den Sicherheitsparameter $n$ und liefert als
+			Ergebnis eine Menge bestehend aus öffentlichen Parametern $PK$, sowie
+			einen Master-Secret-Key $SK_M$.
+		\item $\textit{KeyGen}\left(A, SK_M\right) \to SK$: Als Eingabe
+			nimmt dieser Algorithmus eine Menge von Attributen $A$ und den
+			Master-Secret-Key $SK_M$. Es wird ein privater Schlüssel $SK$
+			zurückgegeben.
+		\item $Enc\left(m, \mathbb{A}, PK\right) \to c$: Der
+			Verschlüsselungsalgorithmus nimmt als Eingabe die Nachricht $m$, eine
+			Zugriffsstruktur $\mathbb{A}$ und die öffentlichen Parameter $PK$.  Als
+			Ausgabe wird ein Chiffrat $c$ erzeugt.
+		\item $Dec\left(c, SK\right) \to \left\{m, \bot\right\}$: Dieser Algorithmus
+			nimmt als Eingabe ein Chiffrat $c$ und den privaten Schlüssel $SK$. Als
+			Ausgabe wird die Nachricht $m$ oder ein Fehler (dargestellt als $\bot$)
+			erzeugt.
+	\end{enumerate}
 	\subsection{Single-Authority}
 	\subsection{Multi-Authority}
 
