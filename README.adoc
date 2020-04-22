@@ -26,6 +26,10 @@ abgearbeitete Meilensteine sind mit einem {chk} gekennzeichnet.
 |	Bilineare Abbildungen, Zugriffsstrukturen, LSSS, Überblick über KP-ABE und
 CP-ABE abgeschlossen
 
+| {chk}
+| *23.04.*
+| Linear Secret Sharing Schemes abgeschlossen
+
 | 
 | *26.04.*
 | Single- und Multi-Authority, Überblick über PHOABE abgeschlossen
