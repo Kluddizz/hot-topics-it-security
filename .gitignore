@@ -2,6 +2,7 @@
 
 docs/**/*.*
 !docs/**/*.cls
+!docs/**/*.sty
 !docs/**/*.tex
 !docs/**/*.pdf
 !docs/**/*.bib

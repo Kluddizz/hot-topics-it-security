@@ -14,9 +14,12 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{kbordermatrix}
 
 \newtheorem{definition}{Definition}
 \newtheorem*{example}{Beispiel}
+\renewcommand{\kbldelim}{(}
+\renewcommand{\kbrdelim}{)}
 
 \begin{document}
 	\maketitle
@@ -155,6 +158,22 @@
 				Geheimisses $s$.
 		\end{enumerate}
 	\end{definition}
+
+	\begin{example}
+		Gegeben sei eine LSSS-Matrix $M$ und die Abbilding $\rho : \mathbb{N^+}
+		\times \mathbb{Z}_p^{l \times n} \to \mathbb{Z}_p^n$, welche die
+		$i$-te Zeile der Matrix $M$ zurückgibt. Zudem werden den Zeilen Parteien
+		$P_i$ zugewiesen, sodass $\rho(i, M)$ den Anteil der jeweiligen Partei liefert.
+		
+		$M = \kbordermatrix{
+				  &   &   &   \\
+			P_2 &1 & 1 & 0 & 1 \\
+			P_2 &	0 & 1 & 1 & 0 \\
+			P_1 &	0 & 1 & 1 & 0 \\
+			P_3 &	1 & 1 & 0 & 0 \\
+			P_4 &	0 & 0 & 1 & 1
+			}$
+	\end{example}
 
 	\subsection{Bilineare Abbildungen}
 	\begin{definition}[Bilineare Abbildungen \cite{abe}]
