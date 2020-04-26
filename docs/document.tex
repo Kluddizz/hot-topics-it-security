@@ -56,12 +56,12 @@
 	Kommunikationsfähigkeit in zwei Bereiche eingeteilt werden. In
 	Einzelanwendungen be\-nö\-ti\-gen man lediglich eine Autorität während es auch
 	Anwendungsfälle gibt, die über unterschiedliche Bereiche bzw. Domänen
-	kommunizieren müssen. Diese besitzen damit mehrere Autoritäten.
+	kommunizieren müssen. Diese besitzen damit mehrere Autoritäten \cite{phoabe}.
 
-	Beide Formen von IoT haben eins gemeinsam. Sie müssen einen sicheren Austausch
+	Beide Klassen von IoT haben eins gemeinsam. Sie müssen einen sicheren Austausch
 	von Daten und die Sicherung der Privatsphäre gewährleisten. Hierfür werden
 	Daten verschlüsselt und mithilfe von Zugriffskontrollmechanismen nur
-	bestimmten Autoritäten zur Verfügung gestellt. Genau deshalb ist die
+	bestimmten Parteien zur Verfügung gestellt. Genau deshalb ist die
 	attribut-basierte Verschlüsselung ein attraktiver Kandidat, da sie
 	Zugriffskontrolle (\textit{Access-Control}) und Verschlüsselung miteinander
 	verknüpft. Ein Problem dabei exisitiert dennoch. Dieses Verfahren verwendet
@@ -86,15 +86,15 @@
 	In weiterführenden Arbeiten, so auch der von \cite{green}, wird ein neues
 	Konzept in Verbindung mit attribut-basierter Verschlüsselung vorgestellt, um
 	diese effizienter zu gestalten. Für die kostspielige Entschlüsselung ist nun
-	nicht mehr alleine der Benutzer zuständig, sondern eine weitere Instanz. Ein
-	halb vertrauenswürdiger Cloud-Server (\textit{semi-trusted cloud server},
-	STCS), welcher den rechenaufwändigen Teil der Entschlüsselung übernehmen
-	soll. Damit der Server keinerlei Informationen über den Entschlüsselten
-	Ciphertext erhält, soll dieser diesen lediglich zum Teil entschlüsseln.
-	Anschließend wird das Ergebnis vom Benutzer selbst entschlüsselt. So soll
-	garantiert werden, dass die rechenaufwändige Arbeit vom STCS und nicht vom
-	Benutzer übernommen wird und trotzdem keinerlei Informationen über die
-	eigentliche Nachricht an dem Server preisgegeben wird.
+	nicht mehr alleine der jeweilige Benutzer zuständig, sondern eine weitere
+	Instanz. Ein halb vertrauenswürdiger Cloud-Server (\textit{semi-trusted cloud
+	server}, STCS), welcher den rechenaufwändigen Teil der Entschlüsselung
+	übernehmen soll. Damit der Server keinerlei Informationen über den
+	entschlüsselten Ciphertext erhält, soll dieser diesen lediglich zum Teil
+	entschlüsseln.  Anschließend wird das Ergebnis vom Benutzer selbst
+	entschlüsselt. So soll garantiert werden, dass die rechenaufwändige Arbeit vom
+	STCS und nicht vom Benutzer übernommen wird und trotzdem keinerlei
+	Informationen über die eigentliche Nachricht an dem Server preisgegeben wird.
 
 	Eine weitere Überlegung von \cite{phoabe} ist folgende. Was ist, wenn der STCS
 	das teilweise entschlüsselte Chiffrat fälscht? Es muss also zusätzlich die
@@ -260,16 +260,17 @@
 	\end{enumerate}
 
 	\subsection{Ciphertext-Policy ABE}
-	CP-ABE verwendet im Gegensatz zu KP-ABE Attribute als private Schlüssel für
-	Benutzer \cite{cp-abe-ieee}. Zudem werden Chiffrate mithilfe von Zugriffsregeln erzeugt, also
-	genau engegengetzt zu dem Vorgehen bei KP-ABE. Nehmen wir an, wir erzeugen
-	einen Schlüssel für Benutzer 1 bestehend aus den Attributen $\left\{A,
-	B\right\}$ und einen Schlüssel für Benutzer 2 bestehend aus den Attributen
-	$\left\{B\right\}$. Bei einem Chiffrat, welches unter der Zugriffsregel $A \land B$
-	erstellt wurde, ist Benutzer 1 dazu in der Lage, dieses zu entschlüsseln.
-	Benutzer 2 jedoch nicht. Bei diesem Verfahren ist man also in der Lage zu
-	entscheiden, welche Daten für welchen Benutzer zur Verfügung stehen sollen
-	bzw. welche Daten entschlüsselt werden können.
+	CP-ABE verwendet im Gegensatz zu KP-ABE Attribute als private Schlüssel
+	\cite{cp-abe-ieee}. Zudem werden Chiffrate mithilfe von Zugriffsregeln
+	erzeugt, also genau engegengetzt zu dem Vorgehen bei KP-ABE. Nehmen wir an,
+	wir erzeugen einen Schlüssel für Benutzer 1 bestehend aus den Attributen
+	$\left\{A, B\right\}$ und einen Schlüssel für Benutzer 2 bestehend aus den
+	Attributen $\left\{B\right\}$. Bei einem Chiffrat, welches unter der
+	Zugriffsregel $A \land B$ erstellt wurde, ist Benutzer 1 dazu in der Lage,
+	dieses zu entschlüsseln.  Benutzer 2 jedoch nicht. Bei diesem Verfahren ist
+	man also in der Lage zu entscheiden, welche Daten für welchen Benutzer zur
+	Verfügung stehen sollen bzw. welche Attribute vorausgesetzt werden, um Geheimtexte
+	zu entschlüsseln.
 
 	Ein Ciphertext-Policy ABE-Schema besteht aus insgesamt vier Algorithmen
 	\cite{cp-abe}.
@@ -292,8 +293,24 @@
 			Ausgabe wird die Nachricht $m$ oder ein Fehler (dargestellt als $\bot$)
 			erzeugt.
 	\end{enumerate}
-	\subsection{Single-Authority}
-	\subsection{Multi-Authority}
+
+	\subsection{Single- und Multi-Authority}
+	Die Erzeugung der privaten Schlüssel kann in einem ABE-Schema auf zwei
+	verschiedenen Arten durchgeführt werden. Zum einen existiert das Modell einer
+	zentralen Autorität, welche für die Generierung der Schlüssel für alle
+	Benutzer zuständig ist. Man bezeichnet diese ABE-Schemata als
+	\textit{central}- bzw. \textit{single-autority}. Da in diesem Verfahren eine
+	einzelne Autorität die Schlüssel bereitstellt, muss dieser vertraut werden.
+	Dies bringt natürlich ein gewisses Risiko mit sich, denn eine zentrale
+	Autorität besitzt sämtliche Schlüssel der Parteien und kann dementsprechend
+	alle Geheimtexte entschlüsseln.
+
+	Um dieses Sicherheitsrisiko zu umgehen, werden sogenannte
+	\textit{multi-authority} Schemata entworfen. Anstatt einer zentralen erzeugen
+	und verwalten mehrere Autoritäten die privaten Schlüssel. Eine einzelne
+	Autorität ist damit nicht in der Lage einen Geheimtext zu entschlüsseln. Zudem
+	ist dieses Verfahren entlastend für sämtliche Autoritäten, da die Verwaltung
+	der Schlüssel durch mehrere Instanzen realisiert wird.
 
 	\section{Policy-Hidden Outsourced ABE}
 	\section{Fazit und Ausblick}
@@ -302,4 +319,3 @@
 	\bibliography{literatur}
 	\bibliographystyle{abbrv}
 \end{document}
-
