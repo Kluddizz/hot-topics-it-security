@@ -306,7 +306,7 @@
 	alle Geheimtexte entschlüsseln.
 
 	Um dieses Sicherheitsrisiko zu umgehen, werden sogenannte
-	\textit{multi-authority} Schemata entworfen. Anstatt einer zentralen erzeugen
+	\textit{multi-authority} Schemata eingesetzt. Anstatt einer zentralen erzeugen
 	und verwalten mehrere Autoritäten die privaten Schlüssel. Eine einzelne
 	Autorität ist damit nicht in der Lage einen Geheimtext zu entschlüsseln, da
 	ihr nicht alle Bestandteile des benötigten Schlüssels zur Verfügung stehen.
@@ -314,7 +314,37 @@
 	Verwaltung der Schlüssel durch mehrere Instanzen realisiert wird.
 
 	\section{Policy-Hidden Outsourced ABE}
-	\section{Fazit und Ausblick}
+	Es wird nun ein Überblick zu \textit{PHOABE} (Policy-Hidden Outsourced
+	Attribute Based Encryption) gegeben, einem Schema, welches aufgrund seiner
+	Architektur für attribut-basierte Verschlüsselung auf IoT-Geräten interessant
+	ist. Wie der Name bereits andeutet, handelt es sich hierbei um ein Schema,
+	welches die Geheimhaltung der Privatsphäre durch Zugriffsstrukturen gewährleistet
+	(Policy-Hidden). Zudem wird ein STCS verwendet, um den Entschlüsselungsprozess
+	teilweise auszulagern (Outsourced). Der Grund hierfür ist, dass IoT-Geräte oft
+	leistungsschwach sind und die Entschlüsselung hingegen sehr kostspielig ist,
+	weshalb viele andere ABE-Schemata nicht praktikabel sind. Da ein STCS
+	verwendet wird, stellt PHOABE zudem sicher, dass die Integrität der
+	Informationen gewährleistet ist. Der Grund für die Sicherstellung ist, dass
+	angenommen wird, dass der Server selbst korrupt sein und Resultate einer
+	Entschlüsselung fälschen bzw. ändern könnte. Kurz zusammengefasst weist PHOABE
+	folgende Eigenschaften auf.
+
+	\begin{itemize}
+		\item Ausgelagert: Die Entschlüsselung wird teilweise durch einen Server
+			(STCS) übernommen.
+		\item Vertraulichkeit: Eine Änderung des Geheimtextes bewirkt keine
+			sinnvolle Änderung der verschlüsselten Nachricht.
+		\item Integrität: Es kann überprüft werden, ob die Resultate des STCS
+			ge\-fälscht wurden.
+		\item Geheimhaltung der Privatsphäre: Zugriffsstrukturen garantieren die
+			Sicherung der Privatsphäre.
+	\end{itemize}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\textwidth]{phoabe-architecture}
+		\caption{Architektur von PHOABE \cite{phoabe}}
+	\end{figure}
 
 	\newpage
 	\bibliography{literatur}

@@ -30,7 +30,7 @@ CP-ABE abgeschlossen
 | *23.04.*
 | Linear Secret Sharing Schemes abgeschlossen
 
-| 
+| {chk}
 | *26.04.*
 | Single- und Multi-Authority, Überblick über PHOABE abgeschlossen
 
