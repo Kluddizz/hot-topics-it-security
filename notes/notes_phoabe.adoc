@@ -1,0 +1,8 @@
+= Policy-Hidden Outsourced Attribute Based Encryption (PHOABE)
+
+== Algorithmen
+* $\text{setup}\left(\lambda\right) \to \text{PP}$
+** Wird von der _Central Trusted Authority_ (CTA) ausgeführt
+** $\lambda$ ist der Sicherheitsparameter
+** $\text{PP}$ sind die öffentlichen Parameter
+* $setup_{auth}\left(\text{PP})$
