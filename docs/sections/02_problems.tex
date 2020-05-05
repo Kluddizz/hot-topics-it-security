@@ -1,0 +1,26 @@
+\section{Problembeschreibung}
+Das \textit{Internet der Dinge}, \textit{Internet of Things} (IoT), hat die
+Aufgabe, verschiedenste Hardwarekomponenten miteinander zu verbinden und damit
+einen Datenaustausch zu ermöglichen. Ein gutes Beispiel hierfür sind
+Smartphones und Sensoren, die ständig miteinander kommunizieren müssen bzw.
+sollen. Grundsätzlich können IoT-Anwendungen aufgrund ihrer
+Kommunikationsfähigkeit in zwei Bereiche eingeteilt werden. In
+Einzelanwendungen be\-nö\-ti\-gen man lediglich eine Autorität während es auch
+Anwendungsfälle gibt, die über unterschiedliche Bereiche bzw. Domänen
+kommunizieren müssen. Diese besitzen damit mehrere Autoritäten \cite{phoabe}.
+
+Beide Klassen von IoT haben eins gemeinsam. Sie müssen einen sicheren Austausch
+von Daten und die Sicherung der Privatsphäre gewährleisten. Hierfür werden
+Daten verschlüsselt und mithilfe von Zugriffskontrollmechanismen nur
+bestimmten Parteien zur Verfügung gestellt. Genau deshalb ist die
+attribut-basierte Verschlüsselung ein attraktiver Kandidat, da sie
+Zugriffskontrolle (\textit{Access-Control}) und Verschlüsselung miteinander
+verknüpft. Ein Problem dabei exisitiert dennoch. Dieses Verfahren verwendet
+bilineare Abbildungen, was vor allem in der Entschlüsselung viel Rechenaufwand
+bedeutet. Für leistungsstarke Desktop-Rechner mag dies weniger eine Rolle
+spielen, ist jedoch bezogen auf IoT ein großes Problem, denn dort
+kommunizieren in der Regel Geräte mit sehr eingeschränkten Ressourcen
+miteinander. Zudem erhöht sich der Rechenaufwand proportional zur Anzahl
+der Attribute. Das Problem liegt also darin, Daten sicher und effizient
+zwischen ressourcenarmen Geräten auszutauschen, ohne die Privatsphäre der
+Benutzer zu verletzen.

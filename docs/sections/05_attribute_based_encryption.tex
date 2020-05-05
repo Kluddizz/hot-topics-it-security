@@ -1,0 +1,96 @@
+\section{Attribute Based Encryption (ABE)}
+Im Gegensatz zur klassischen Public-Key-Verschlüsselung zielt die
+attribut-basierte Verschlüsselung (ABE) darauf ab, ein Chiffrat für mehrere anstatt
+für nur einen Benutzer zu erzeugen. Dafür werden die privaten Schlüssel und
+Chiffrate der Benuzer (Parteien) als Zugriffsregeln bzw. Attribute ausgelegt.
+Ferner ist ein Benutzer in der Lage das Chiffrat mithilfe von Attributen oder
+festgelegten Regeln zu entschlüsseln. Grundsätzlich werden ABE-Schemata in
+zwei unterschiedliche Kategorien eingeteilt \cite{phoabe}.
+
+
+\subsection{Key-Policy ABE}
+KP-ABE-Schemata verwenden Zugriffsregeln als private Schlüs\-sel und berechnen
+ein Chiffrat basierend auf ausgewählte Attribute. Als Beispiel soll die
+Zugriffsregel $A \land B$ als Schlüssel dienen. Zudem wird ein Chiffrat mit
+dem Attribut $\left\{A\right\}$ erzeugt. Versucht man nun das Chiffrat zu entschlüsseln,
+so schlägt dies fehl, da die Zugriffsregel nicht erfüllt wird. Werden hingegen
+die Attribute $\left\{A, B\right\}$ verwendet, wird die Regel eingehalten und
+das Chiffrat kann entschlüsselt werden. Hieraus wird ein mögliches Problem
+sichtbar, denn mit einem solchen Schema lässt sich nicht kontrollieren welche
+Benutzer Zugriff besitzen sollen. Stattdessen erhalten alle Benutzer Zugriff,
+denen eine entsprechende Zugriffsregel zugewiesen wurde \cite{cp-abe-ieee}.
+
+Ein Key-Policy-ABE-Schema besteht aus insgesamt vier Algorithmen \cite{kp-abe}.
+
+\begin{enumerate}
+	\item $\textit{Setup}\left(n\right) \to \left(PK, SK_M\right)$: Dieser
+		Algorithmus nimmt als Eingabe den Sicherheitsparameter $n$ und liefert als
+		Ergebnis eine Menge bestehend aus öffentlichen Parametern $PK$, sowie
+		einen Master-Secret-Key $SK_M$.
+	\item $\textit{KeyGen}\left(\mathbb{A}, SK_M\right) \to SK$: Als Eingabe
+		nimmt dieser Algorithmus die Zu\-griffs\-struktur $\mathbb{A}$ und den
+		Master-Secret-Key $SK_M$. Es wird ein privater Schlüssel $SK$
+		zurückgegeben.
+	\item $Enc\left(m, A, PK\right) \to c$: Der Verschlüsselungsalgorithmus
+		nimmt als Eingabe die Nachricht $m$, eine nicht-leere Menge von Attributen
+		$A$ und die öffentlichen Parameter $PK$. Als Ausgabe wird ein Chiffrat $c$
+		erzeugt.
+	\item $Dec\left(c, SK\right) \to \left\{m, \bot\right\}$: Dieser Algorithmus
+		nimmt als Eingabe ein Chiffrat $c$ und den privaten Schlüssel $SK$. Als
+		Ausgabe wird die Nachricht $m$ oder ein Fehler (dargestellt als $\bot$)
+		erzeugt.
+\end{enumerate}
+
+\subsection{Ciphertext-Policy ABE}
+CP-ABE verwendet im Gegensatz zu KP-ABE Attribute als private Schlüssel
+\cite{cp-abe-ieee}. Zudem werden Chiffrate mithilfe von Zugriffsregeln
+erzeugt, also genau engegengetzt zu dem Vorgehen bei KP-ABE. Nehmen wir an,
+wir erzeugen einen Schlüssel für Benutzer 1 bestehend aus den Attributen
+$\left\{A, B\right\}$ und einen Schlüssel für Benutzer 2 bestehend aus den
+Attributen $\left\{B\right\}$. Bei einem Chiffrat, welches unter der
+Zugriffsregel $A \land B$ erstellt wurde, ist Benutzer 1 dazu in der Lage,
+dieses zu entschlüsseln.  Benutzer 2 jedoch nicht. Bei diesem Verfahren ist
+man also in der Lage zu entscheiden, welche Daten für welchen Benutzer zur
+Verfügung stehen sollen bzw. welche Attribute vorausgesetzt werden, um Geheimtexte
+zu entschlüsseln.
+
+Ein Ciphertext-Policy ABE-Schema besteht aus insgesamt vier Algorithmen
+\cite{cp-abe}.
+
+\begin{enumerate}
+	\item $\textit{Setup}\left(n\right) \to \left(PK, SK_M\right)$: Dieser
+		Algorithmus nimmt als Eingabe den Sicherheitsparameter $n$ und liefert als
+		Ergebnis eine Menge bestehend aus öffentlichen Parametern $PK$, sowie
+		einen Master-Secret-Key $SK_M$.
+	\item $\textit{KeyGen}\left(A, SK_M\right) \to SK$: Als Eingabe
+		nimmt dieser Algorithmus eine Menge von Attributen $A$ und den
+		Master-Secret-Key $SK_M$. Es wird ein privater Schlüssel $SK$
+		zurückgegeben.
+	\item $Enc\left(m, \mathbb{A}, PK\right) \to c$: Der
+		Verschlüsselungsalgorithmus nimmt als Eingabe die Nachricht $m$, eine
+		Zugriffsstruktur $\mathbb{A}$ und die öffentlichen Parameter $PK$.  Als
+		Ausgabe wird ein Chiffrat $c$ erzeugt.
+	\item $Dec\left(c, SK\right) \to \left\{m, \bot\right\}$: Dieser Algorithmus
+		nimmt als Eingabe ein Chiffrat $c$ und den privaten Schlüssel $SK$. Als
+		Ausgabe wird die Nachricht $m$ oder ein Fehler (dargestellt als $\bot$)
+		erzeugt.
+\end{enumerate}
+
+\subsection{Single- und Multi-Authority}
+Die Erzeugung der privaten Schlüssel kann in einem ABE-Schema auf zwei
+verschiedenen Arten durchgeführt werden. Zum einen existiert das Modell einer
+zentralen Autorität, welche für die Generierung der Schlüssel für alle
+Benutzer zuständig ist. Man bezeichnet diese ABE-Schemata als
+\textit{central}- bzw. \textit{single-autority}. Da in diesem Verfahren eine
+einzelne Autorität die Schlüssel bereitstellt, muss dieser vertraut werden.
+Dies bringt natürlich ein gewisses Risiko mit sich, denn eine zentrale
+Autorität besitzt sämtliche Schlüssel der Parteien und kann dementsprechend
+alle Geheimtexte entschlüsseln.
+
+Um dieses Sicherheitsrisiko zu umgehen, werden sogenannte
+\textit{multi-authority} Schemata eingesetzt. Anstatt einer zentralen erzeugen
+und verwalten mehrere Autoritäten die privaten Schlüssel. Eine einzelne
+Autorität ist damit nicht in der Lage einen Geheimtext zu entschlüsseln, da
+ihr nicht alle Bestandteile des benötigten Schlüssels zur Verfügung stehen.
+Zudem ist dieses Verfahren entlastend für sämtliche Autoritäten, da die
+Verwaltung der Schlüssel durch mehrere Instanzen realisiert wird.

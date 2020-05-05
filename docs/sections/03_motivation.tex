@@ -1,0 +1,32 @@
+\section{Motivation}
+Die attribut-basierte Verschlüsselung ist, wie in der Problembeschreibung
+bereits erwähnt, ineffizienter, je mehr Attribute verwendet werden. Besonders
+die Entschlüsselung wird durch die bilinearen Operationen extrem
+rechenaufwändig, was zur Folge hat, dass dieses Schema auf ressourcenärmeren
+Geräten und damit auf IoT nur bedingt anwendbar ist. Eine wichtige Frage, die
+sich also stellt ist, wie man ABE für eben solche Anwendungsfälle anwendbar
+gestalten kann.
+
+In weiterführenden Arbeiten, so auch der von \cite{green}, wird ein neues
+Konzept in Verbindung mit attribut-basierter Verschlüsselung vorgestellt, um
+diese effizienter zu gestalten. Für die kostspielige Entschlüsselung ist nun
+nicht mehr alleine der jeweilige Benutzer zuständig, sondern eine weitere
+Instanz. Ein halb vertrauenswürdiger Cloud-Server (\textit{semi-trusted cloud
+server}, STCS), welcher den rechenaufwändigen Teil der Entschlüsselung
+übernehmen soll. Halb vertrauenswürdig bedeutet, dass wir dem Server
+vertrauen, dass dieser uns die gewünschten Resultate liefert, jedoch selbst
+versucht private Daten auszulesen. Der STCS soll lediglich einen Teil der
+Entschlüsselung übernehmen. Anschließend wird das Ergebnis vom Benutzer selbst
+entschlüsselt. So soll garantiert werden, dass die rechenaufwändige Arbeit vom
+STCS und nicht vom Benutzer übernommen wird und trotzdem keinerlei
+Informationen über die eigentliche Nachricht an dem Server preisgegeben wird.
+
+Eine weitere Überlegung von \cite{phoabe} ist folgende. Was ist, wenn der STCS
+das teilweise entschlüsselte Chiffrat fälscht? Es muss also zusätzlich die
+Möglichkeit bestehen, dass das Ergebnis der Entschlüsselung des STCS'
+überprüft werden kann. Einige vergangene Arbeiten haben sich dem Problem
+gewidmet, jedoch keine effiziente Lösung geboten oder sind inpraktikabel für
+IoT, da sie sich auf einer einzigen Autorität stützen. Da IoT jedoch
+hauptsächlich über mehrere Domänen kommuniziert, ist dies keine praktikable
+Lösung. Die Motivation hinter \cite{phoabe} ist also, ein ausgelagertes,
+verifizierbares multi-authority ABE-Schema zu entwerfen.

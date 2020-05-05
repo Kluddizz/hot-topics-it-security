@@ -1,0 +1,109 @@
+\section{Grundlagen}
+\subsection{Zugriffsregeln}
+Grundsätzlich werden Regeln für den Datenzugriff durch zwei Formate
+repräsentiert. Zum Einen durch boolsche Funktionen und zum Anderen durch
+sogenannte Linear Secret Sharing Schemes (LSSS). In diesem Abschnitt sollen
+beide Repräsentationsmöglichkeiten eingeführt werden.
+
+\begin{definition}[Zugriffsstrukturen \cite{abe}]\label{def:access-structures}
+	Sei $\left\{ P_1, P_2, ..., P_n \right\}$ die Menge der beteiligten
+	Parteien. Eine Sammlung $\mathbb{A} \subseteq 2^{\left\{ P_1, P_2, ..., P_n
+	\right\}}$ ist monoton, wenn $\forall B, C .\;\; B \in \mathbb{A}
+	\;\;\land\;\; B \subseteq C \implies C \in \mathbb{A}$. Eine
+	Zugriffsstruktur ist damit eine Sammlung $\mathbb{A}$ von nicht-leeren
+	Untermengen von dem Universum $\left\{ P_1, P_2, ... P_n \right\}$. Alle
+	Mengen $A \in \mathbb{A}$ werden als authorisierte Mengen während
+	die nicht in $\mathbb{A}$ vertetenden Mengen als unauthorisierte
+	bezeichnet werden.
+\end{definition}
+
+Definition ~\ref{def:access-structures} kann dabei so interpretiert werden,
+als dass alle Obermengen jedes Elements $B \in \mathbb{A}$ verteten sein
+müssen. Im Folgenden soll ein Beispiel dies verdeutlichen.
+
+\begin{example}
+	Sei $\mathbb{U} = \left\{ 1, 2, 3, 4 \right\}$ ein Universum und $\mathbb{A}
+	\subseteq 2^\mathbb{U}$ eine Zugriffsstruktur.
+
+	Die Zugriffsstruktur $\mathbb{A} = \left\{ \left\{1,2\right\},
+	\left\{3,4\right\} \right\}$ ist nicht monoton, da das Element
+	$\left\{1,2,3\right\}$ nicht vorhanden ist.
+
+	Die Zugriffsstruktur $\mathbb{A} = \left\{ \left\{3,4\right\},
+	\left\{1,3,4\right\}, \left\{1,2,3,4\right\} \right\}$ ist monoton, da alle
+	Obermengen der Elemente von $\mathbb{A}$ vorhanden sind.
+\end{example}
+
+\begin{definition}[Linear Secret-Sharing Schemes \cite{abe}]
+	Ein Linear Secret-Sharing Scheme (LSSS) über eine Menge von Parteien $P$ ist
+	linear, wenn
+
+	\begin{enumerate}
+		\item Die Anteile (shares) für jede Partei einen Vektor $\vec{v} \in
+			\mathbb{Z}_p^{n+1}$ formen.
+		\item Eine Matrix $M$ existiert, die $l$ Zeilen und $n+1$ Spalten enthält.
+			Jede $i$-te Zeile aus $M$ mit $i \in \left\{1, ..., l\right\}$ ist dann
+			mit einer Partei $x_i \in P$ beschriftet. Wenn wir den Spaltenvektor $v =
+			\left(s, r_1, r_2, ..., r_n\right)$ betrachten, wobei $s \in \mathbb{Z}_p$ das zu
+			teilende Geheimnis ist und $r_1, ..., r_n \in \mathbb{Z}_p$ zufällig
+			gewählt werden, dann ist $Mv$ ein Vektor bestehend aus $l$ Anteilen des
+			Geheimisses $s$.
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	Gegeben sei eine LSSS-Matrix $M \in \mathbb{Z}_2^{l \times n}$ und die Abbilding $\rho : \mathbb{N^+}
+	\times \mathbb{Z}_p^{l \times n} \to \mathbb{Z}_p^n$, welche die
+	$i$-te Zeile der Matrix $M$ zurückgibt. Zudem werden den Zeilen Parteien
+	$P_i$ zugewiesen, sodass $\rho(i, M)$ den Anteil der jeweiligen Partei liefert.
+	$$M = \kbordermatrix{
+				&   &   &   \\
+		P_2 &1 & 1 & 0 & 1 \\
+		P_2 &	0 & 1 & 1 & 0 \\
+		P_1 &	0 & 1 & 1 & 0 \\
+		P_3 &	1 & 1 & 0 & 0 \\
+		P_4 &	0 & 0 & 1 & 1
+		}$$
+
+	Betrachten wir die Kombination $\left\{ P_2, P_4 \right\}$. Mithilfe der
+	Abbildung $\rho$ erhalten wir die dementsprechenden Zeilen.
+
+	\begin{align*}
+		\rho\left(0, M\right) = \vec{v_1}_{P_2} = \left(1, 1, 0, 1\right) \\
+		\rho\left(1, M\right) = \vec{v_2}_{P_2} = \left(0, 1, 1, 0\right) \\
+		\rho\left(4, M\right) = \vec{v}_{P_4} = \left(0, 0, 1, 1\right)
+	\end{align*}
+
+	Um die Authentizität zu prüfen, muss die Summe der Zeilenvektoren $e =
+	\left(1, 0, 0, 0\right)$ ergeben. Wir berechnen nun also die Summe der
+	Vektoren
+	
+	$$\vec{v_1}_{P_2} + \vec{v_2}_{P_2} + \vec{v}_{P_4} = (1, 2, 2, 2) \equiv
+	(1, 0, 0, 0) \mod 2$$
+
+	und sehen, dass die Kombination $\left\{P_2, P_4\right\}$ authorisiert ist.
+\end{example}
+
+\subsection{Bilineare Abbildungen}
+\begin{definition}[Bilineare Abbildungen \cite{abe}]
+	Sei $\mathbb{P}$ die Menge aller Primzahlen und $\mathbb{G}$, $\mathbb{G}_T$
+	zwei multiplikative zyklische Gruppen mit einer Ordnung $p \in \mathbb{P}$.
+	Sei $g$ ein Generator von $\mathbb{G}$ und $e: \mathbb{G} \times \mathbb{G}
+	\to \mathbb{G}_T$ eine bilineare Abbildung mit folgenden Eigenschaften.
+
+	\begin{enumerate}
+		\item Bilinearität: $\forall u, v \in \mathbb{G},\;\; \forall a, b \in
+			\mathbb{Z}_p. \;\; e(u^a, v^b) = e(u, v)^{ab}$
+		\item Nicht-Entartung: $e(g, g) \neq 1$
+		\item Effizient Berechenbar: Die Gruppenoperation von $\mathbb{G}$ und die
+			bilineare Abbildung $e$ sind effizient berechenbar.
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	Sei $(G, +)$ eine Gruppe und $x, y, z \in G$. Sei $(G_T, *)$ eine multiplikative
+	Gruppe und $e: G \times G \to G_T$ eine bilineare Abbilding. Dann gilt
+
+	$e(3x, y) = e(x+x+x, y) = e(x, y) * e(x, y) * e(x, y) = e(x, y)^3 = e(x,
+	3y)$.
+\end{example}
