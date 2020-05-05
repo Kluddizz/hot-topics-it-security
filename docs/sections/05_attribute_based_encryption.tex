@@ -1,12 +1,17 @@
 \section{Attribute Based Encryption (ABE)}
 Im Gegensatz zur klassischen Public-Key-Verschlüsselung zielt die
-attribut-basierte Verschlüsselung (ABE) darauf ab, ein Chiffrat für mehrere anstatt
-für nur einen Benutzer zu erzeugen. Dafür werden die privaten Schlüssel und
-Chiffrate der Benuzer (Parteien) als Zugriffsregeln bzw. Attribute ausgelegt.
-Ferner ist ein Benutzer in der Lage das Chiffrat mithilfe von Attributen oder
-festgelegten Regeln zu entschlüsseln. Grundsätzlich werden ABE-Schemata in
-zwei unterschiedliche Kategorien eingeteilt \cite{phoabe}.
-
+attribut-basierte Verschlüsselung (ABE) darauf ab, ein Chiffrat für mehrere
+anstatt für nur einen Benutzer zu erzeugen. Genauer ausgedrückt ist das Ziel
+eines ABE-Schemas die Einhaltung der Anonymität eines Benutzers, da dieser nur
+die benötigten Zugriffsbeschränkungen besitzen muss, um bestimmte Daten zu
+entschlüsseln. Dafür werden die privaten Schlüssel und Chiffrate der Benuzer
+(Parteien) als Zugriffsregeln bzw.  Attribute ausgelegt. Ferner ist ein Benutzer
+in der Lage das Chiffrat mithilfe von Attributen oder festgelegten Regeln zu
+entschlüsseln, sodass jeder Benutzer mit den richtigen Attributen Zugriff auf
+die Daten hat. Die Attribute bzw.  Zugriffsregelungen werden dabei von einer
+sogenannten Attribut-Autorität verteilt.  Grundsätzlich werden ABE-Schemata in
+zwei unterschiedliche Kategorien eingeteilt
+\cite{phoabe}.
 
 \subsection{Key-Policy ABE}
 KP-ABE-Schemata verwenden Zugriffsregeln als private Schlüs\-sel und berechnen
