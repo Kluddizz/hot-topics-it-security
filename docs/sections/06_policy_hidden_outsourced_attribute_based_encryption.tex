@@ -1,4 +1,11 @@
 \section{Policy-Hidden Outsourced ABE}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{phoabe-architecture}
+	\caption{Architektur von PHOABE \cite{phoabe}}
+\end{figure}
+
 Es wird nun ein Überblick zu \textit{PHOABE} (Policy-Hidden Outsourced
 Attribute Based Encryption) gegeben, einem Schema, welches aufgrund seiner
 Architektur für attribut-basierte Verschlüsselung auf IoT-Geräten interessant
@@ -15,6 +22,7 @@ und versuchen könnte, private Daten auszuspähen, uns jedoch trotzdem valide
 Ergebnisse erzeugt. Kurz zusammengefasst weist PHOABE folgende Eigenschaften
 auf.
 
+\FloatBarrier
 \begin{itemize}
 	\item Ausgelagert: Die Entschlüsselung wird teilweise durch einen Server
 		(STCS) übernommen.
@@ -26,53 +34,10 @@ auf.
 		Sicherung der Privatsphäre.
 \end{itemize}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{phoabe-architecture}
-	\caption{Architektur von PHOABE \cite{phoabe}}
-\end{figure}
-
 \subsection{Algorithmen}
 PHOABE besteht aus insgesamt sieben Algorithmen \cite{phoabe}. Es werden
 folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 
-\begin{center}
-\begin{small}
-	\begin{tabular}{p{3cm}p{9cm}}
-		\hline
-		Symbol & Beschreibung \\
-		\hline
-		STCS & Semi Trusted Cloud Server \\
-		CTA & Central Trusted Authority \\
-		$\lambda$ & Sicherheitsparameter \\
-		$AA_j$ & Die $j$-te Attribute Authority \\
-		$PP$ & Public Parameter \\
-		$sk_{AA_j}$ & Der geheime Schlüssel der $j$-ten Attribute Authority \\
-		$pk_{AA_j}$ & Der öffentliche Schlüssel der $j$-ten Attribute Authority \\
-		$M_{pk}$ & Menge der öffentlichen Schlüssel aller Attribute Authorities \\
-		$A$ & Zugriffsstruktur in LSSS-Matrix-Darstellung \\
-		$\rho$ & Abbildung zum Auslesen einer Zeile von $A$ \\
-		$p$ & Die Zugriffsregeln bestehend aus $p = \left(A, \rho\right)$ \\
-		$C$ & Der aus der Nachricht erzeugte Geheimtext \\
-		$GID$ & Die Identität eines Benutzers \\
-		$S_{j, GID}$ & Menge von Attributen der $j$-ten Attibute Authority für den
-		Benutzer mit der Identität $GID$ \\
-		$sk_{j, GID}$ & Der geheime Schlüssel der $j$-ten Attribute Authority für
-		den Benutzer mit der Identität $GID$ \\
-		$M_{sk}$ & Menge von geheimen Schlüsseln $sk_{j, GID}$ der $j$-ten Attribute Authority \\
-		$M_{tk}$ & Menge der Transformationsschlüssel $tk_{j, GID} \in M_{tk}$ \\
-		$tpk_{j, GID}$ & Öffentlicher Transformationsschlüssel der $j$-ten
-		Attribute Authority für den Benutzer mit der Identität $GID$ \\
-		$tsk_{j, GID}$ & Geheimer Transformationsschlüssel der $j$-ten
-		Attribute Authority für den Benutzer mit der Identität $GID$ \\
-		$m$ & Die Nachricht \\
-		$m'$ & Die teilweise entschlüsselte Nachricht vom STCS \\
-		\hline
-	\end{tabular}
-\end{small}
-\end{center}
-
-\newpage
 \begin{enumerate}
 	\item \algitem{Setup}{}{\lambda}{PP} Der
 		Setup-Algorithmus nimmt als Eingabe einen Sicherheitsparameter $\lambda$,
@@ -117,3 +82,41 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 		Nachricht $m'$ und den geheimen Transformationsschlüssel $tsk_{GID}$. Als
 		Ausgabe wird die Nachricht $m$ erzeugt.
 \end{enumerate}
+
+\begin{center}
+\begin{small}
+	\begin{tabular}{p{3cm}p{9cm}}
+		\hline
+		Symbol & Beschreibung \\
+		\hline
+		STCS & Semi Trusted Cloud Server \\
+		CTA & Central Trusted Authority \\
+		$\lambda$ & Sicherheitsparameter \\
+		$AA_j$ & Die $j$-te Attribute Authority \\
+		$PP$ & Public Parameter \\
+		$sk_{AA_j}$ & Der geheime Schlüssel der $j$-ten Attribute Authority \\
+		$pk_{AA_j}$ & Der öffentliche Schlüssel der $j$-ten Attribute Authority \\
+		$M_{pk}$ & Menge der öffentlichen Schlüssel aller Attribute Authorities \\
+		$A$ & Zugriffsstruktur in LSSS-Matrix-Darstellung \\
+		$\rho$ & Abbildung zum Auslesen einer Zeile von $A$ \\
+		$p$ & Die Zugriffsregeln bestehend aus $p = \left(A, \rho\right)$ \\
+		$C$ & Der aus der Nachricht erzeugte Geheimtext \\
+		$GID$ & Die Identität eines Benutzers \\
+		$S_{j, GID}$ & Menge von Attributen der $j$-ten Attibute Authority für den
+		Benutzer mit der Identität $GID$ \\
+		$sk_{j, GID}$ & Der geheime Schlüssel der $j$-ten Attribute Authority für
+		den Benutzer mit der Identität $GID$ \\
+		$M_{sk}$ & Menge von geheimen Schlüsseln $sk_{j, GID}$ der $j$-ten Attribute Authority \\
+		$M_{tk}$ & Menge der Transformationsschlüssel $tk_{j, GID} \in M_{tk}$ \\
+		$tpk_{j, GID}$ & Öffentlicher Transformationsschlüssel der $j$-ten
+		Attribute Authority für den Benutzer mit der Identität $GID$ \\
+		$tsk_{j, GID}$ & Geheimer Transformationsschlüssel der $j$-ten
+		Attribute Authority für den Benutzer mit der Identität $GID$ \\
+		$m$ & Die Nachricht \\
+		$m'$ & Die teilweise entschlüsselte Nachricht vom STCS \\
+		\hline
+	\end{tabular}
+\end{small}
+\end{center}
+
+\subsection{Konstruktion}
