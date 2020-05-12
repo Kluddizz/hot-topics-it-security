@@ -43,17 +43,69 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 		Setup-Algorithmus nimmt als Eingabe einen Sicherheitsparameter $\lambda$,
 		liefert die öffentlichen Parameter $\text{PP}$ und wird von einer
 		\textit{Central Trusted Authority} (CTA) ausgeführt.
+		\begin{enumerate}
+			\item Definition der multiplikativen Gruppen $\mathbb{G}_1$,
+				$\mathbb{G}_T$ der Ordnung $p$
+			\item Definieren der bilinearen Abbildung $e: \mathbb{G}_1 \times
+				\mathbb{G}_1 \to \mathbb{G}_T$ 
+			\item Setzen des Generators $g$, sodass $\langle g \rangle = \mathbb{G}_1$
+			\item Definieren der Hashfunktion $H' : \left\{ 0,1 \right\}^* \to
+				\mathbb{Z}_p$
+			\item Definieren der Hashfunktion $H_0 : \left\{ M \right\} \to
+				\left\{ 0,1 \right\}^{n_{H_0}}$
+			\item Definieren der Hashfunktion $H_1 : \left\{ M \right\} \to
+				\left\{ 0,1 \right\}^*$
+			\item Definieren der Hashfunktion $H_2 : \left\{ 0,1 \right\}^* \to
+				\left\{ 0,1 \right\}^{n_{H_2}}$
+			\item \textbf{return} $\left( \mathbb{G}_1, \mathbb{G}_T, p, H', H_0, H_1,
+				H_2, e, g\right)$
+		\end{enumerate}
+
 	\item \algitem{Setup}{auth}{PP}{\left(sk_{AA_j}, pk_{AA_j}\right)} Bei $N$
 		Autoritäten führt die Autorität $AA_j$ mit $j \in N$ diesen Algorithmus
 		aus, um einen geheimen Schlüssel $sk_{AA_j}$ und einen öffentlichen
 		Schlüssel $pk_{AA_j}$ zu generieren. Als Eingabe nimmt der Algorithmus die
 		öffentlichen Umgebungsparameter $PP$.
-	\item \algitem{Encrypt}{}{PP, M_{pk}, m, p}{C} Dieser Algorithmus
+		\begin{enumerate}
+			\item Wähle zwei zufällige Zahlen $\alpha_i, t_i \in \mathbb{Z}^*_N$ für
+				jedes Attribut $i$
+			\item Wähle eine zufällige Zahl $y \in \mathbb{Z}^*_N$
+			\item Berechne den geheimen Schlüssel $sk_{AA_j} = \left(
+				\left\{\alpha_i, t_i\right\}, y \right)$
+			\item Berechne den öffentlichen Schlüssel $pk_{AA_j} = \left(
+				\left\{ e(g, g)^{\alpha_i}, g^{t_i} \right\}, g^y \right)$ 
+			\item \textbf{return} $\left( sk_{AA_j}, pk_{AA_j} \right)$
+		\end{enumerate}
+
+	\item \algitem{Encrypt}{}{PP, M_{pk}, m, \Phi}{C} Dieser Algorithmus
 		ver\-schlüs\-selt die Nachricht $m$ unter Angabe einer Menge der
 		öffent\-lich\-en Schlüssel $M_{pk} = \left\{ pk_{AA_j} \;\vert\; j \in N
-		\right\}$. Jeder dieser Schlüssel werden von einer \textit{Attribute
-		Authority} bereitgestellt. Zudem wird eine Zugriffsregel $p = \left( A,
-		\rho \right)$ verwendet. Als Ausgabe wird ein Geheimtext $C$ erzeugt.
+			\right\}$ und wird vom Datenbesitzer ausgeführt. Jeder dieser Schlüssel
+			werden von einer \textit{Attribute Authority} bereitgestellt. Zudem wird
+			eine Zugriffsregel $\Phi = \left( A, \rho \right)$ verwendet. Als Ausgabe
+			wird ein Geheimtext $C$ erzeugt.
+		\begin{enumerate}
+			\item Wähle eine zufällige Zahl $a \in \mathbb{Z}^*_N$
+			\item Berechne für jedes Attribute den Wert $q_i = e((g^y)^a, H'(x_i))$,
+				wobei $x_i \in \Phi$ ein Attribut
+				aus der Zugriffsstruktur $\Phi$ ist.
+			\item Konvertiere $\Phi$ mithilfe $\left\{q_i\right\}_{i \in F}$ in eine
+				LSSS-Matrix $\left( A^{n \times l}, \rho \right)$, wobei $F$ die Anzahl
+				der Attribute ist.
+			\item Wähle eine zufällige Zahl $s \in \mathbb{Z}_N$.
+			\item Wähle $\left\{ p_i \;\vert\; p_i \in \mathbb{Z}^*_N, 0 \leq i \le F
+				\right\}$, wobei $F$ die Anzahl der Attribute bzw. Zeilen der
+				LSSS-Matrix ist.
+			\item Wähle eine zufällige Nachricht $R \in \mathbb{G}_T$ aus der
+				Zielgruppe.
+			\item Berechne $\lambda_i, \omega_i$ sodass $\lambda_i = \vec{A_i} \cdot
+				\vec{v}$ und $\omega_i = \vec{A_i} \cdot \vec{\tau}$, wobei $\vec{v} =
+				\left( s, v_1, ..., v_l \right) \in \mathbb{Z}^l_N$ und $\vec{\tau} =
+				\left( 0, \tau_1, ... \tau_l \right) \in \mathbb{Z}^l_N$ zwei zufällige
+				Vektoren aus dem $l$-dimensionalen Raum von $\mathbb{Z}_N$ sind.
+			\item 
+		\end{enumerate}
+
 	\item\label{enum:phoabe_keygen} \algitem{Keygen}{}{PP, sk_{AA_j}, pk_{AA_j},
 		GID, S_{j, GID}}{sk_{j, GID}} Dieser Algorithmus erzeugt einen privaten
 		Schlüssel $sk_{j, GID}$ und wird von einer \textit{Attribute Authority}
@@ -62,6 +114,7 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 		\right\}$ der $AA_j$.  Dabei stellt $a \in S_{j, GID}$ ein Attribut und
 		$n_j$ die Anzahl der Attribute von $AA_j$ dar. $GID$ ist die Identität vom
 		Benutzer.
+
 	\item \algitem{Transform}{}{PP, M_{sk}, p, C}{M_{tk}} Dieser Algorithmus
 		wird von einem Benutzer ausgeführt. Dieser besitzt eine Menge von
 		Attributen $S_{GID}$ und die dazugehörigen Schlüssel $M_{sk} = \left\{
@@ -72,11 +125,13 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 		\rho\right)$ und den Geheimtext $C$. Als Ausgabe wird eine Menge von
 		transformierten Schlüsseln $M_{tk} = \left( \left\{tpk_{j, GID} \;\vert\;
 		j \in N\right\}, tsk_{GID} \right)$ erzeugt.
+
 	\item \algitem{Decrypt}{out}{PP, M_{tk}, p, C}{m'} Dieser Algorithmus wird
 		vom STCS ausgeführt und erzeugt die teilweise entschlüsselte Nachricht
 		$m'$. Als Eingabe nimmt der Algorithmus die öffentlichen Parameter $PP$,
 		eine Menge von transformierten Schlüsseln $M_tk$, die Zugriffsregeln $p =
 		\left(A, \rho\right)$ und den Geheimtext $C$.
+
 	\item \algitem{Decrypt}{}{m', tks_{GID}}{m} Dieser Algorithmus wird von
 		Benutzer ausgeführt und nimmt als Eingabe die teilweise entschlüsselte
 		Nachricht $m'$ und den geheimen Transformationsschlüssel $tsk_{GID}$. Als
@@ -99,14 +154,15 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 		$M_{pk}$ & Menge der öffentlichen Schlüssel aller Attribute Authorities \\
 		$A$ & Zugriffsstruktur in LSSS-Matrix-Darstellung \\
 		$\rho$ & Abbildung zum Auslesen einer Zeile von $A$ \\
-		$p$ & Die Zugriffsregeln bestehend aus $p = \left(A, \rho\right)$ \\
+		$\Phi$ & Die Zugriffsregeln bestehend aus $\Phi = \left(A, \rho\right)$ \\
 		$C$ & Der aus der Nachricht erzeugte Geheimtext \\
 		$GID$ & Die Identität eines Benutzers \\
 		$S_{j, GID}$ & Menge von Attributen der $j$-ten Attibute Authority für den
 		Benutzer mit der Identität $GID$ \\
 		$sk_{j, GID}$ & Der geheime Schlüssel der $j$-ten Attribute Authority für
 		den Benutzer mit der Identität $GID$ \\
-		$M_{sk}$ & Menge von geheimen Schlüsseln $sk_{j, GID}$ der $j$-ten Attribute Authority \\
+		$M_{sk}$ & Menge von geheimen Schlüsseln $sk_{j, GID}$ der $j$-ten Attribute
+		Authority \\
 		$M_{tk}$ & Menge der Transformationsschlüssel $tk_{j, GID} \in M_{tk}$ \\
 		$tpk_{j, GID}$ & Öffentlicher Transformationsschlüssel der $j$-ten
 		Attribute Authority für den Benutzer mit der Identität $GID$ \\
@@ -118,5 +174,3 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 	\end{tabular}
 \end{small}
 \end{center}
-
-\subsection{Konstruktion}

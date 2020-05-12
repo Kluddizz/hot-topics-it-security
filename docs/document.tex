@@ -16,6 +16,7 @@
 \usepackage{amssymb}
 \usepackage{kbordermatrix}
 \usepackage{placeins}
+\usepackage{enumitem}
 
 \newtheorem{definition}{Definition}
 \newtheorem*{example}{Beispiel}
@@ -23,6 +24,8 @@
 \renewcommand{\kbrdelim}{)}
 
 \newcommand{\algitem}[4]{\textbf{$\text{#1}_{#2}\left({#3}\right) \to {#4}$.}\;\;\;\;}
+
+\setlist[enumerate]{label*={\arabic*.}, ref={\arabic*}}
 
 \begin{document}
 	\maketitle
