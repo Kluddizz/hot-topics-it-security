@@ -103,7 +103,13 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 				\left( s, v_1, ..., v_l \right) \in \mathbb{Z}^l_N$ und $\vec{\tau} =
 				\left( 0, \tau_1, ... \tau_l \right) \in \mathbb{Z}^l_N$ zwei zufällige
 				Vektoren aus dem $l$-dimensionalen Raum von $\mathbb{Z}_N$ sind.
-			\item 
+			\item Berechne $CT_{ABE} = \left(h, C_0, C_{1,i}, C_{2,i}, C_{3,i}\right)$
+				mit \\
+				$h = g^a, \; C_0 = R \cdot e(g, g)^s, \; C_{1,i} =
+				g^{\lambda_{\rho(i)}}, \; C_{2,i} = g^{p_i}, \; C_{3,i} =
+				g^{t_{\rho(i)}}$. Zur Erinnerung: $\rho(i)$ gibt den $i$-ten
+				Zeilenvektor der LSSS-Matrix zurück. Dementsprechend ist
+				$\lambda_{\rho(i)}$ ???
 		\end{enumerate}
 
 	\item\label{enum:phoabe_keygen} \algitem{Keygen}{}{PP, sk_{AA_j}, pk_{AA_j},
@@ -114,6 +120,15 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 		\right\}$ der $AA_j$.  Dabei stellt $a \in S_{j, GID}$ ein Attribut und
 		$n_j$ die Anzahl der Attribute von $AA_j$ dar. $GID$ ist die Identität vom
 		Benutzer.
+		\begin{enumerate}
+			\item Zur Erinnerung: $sk_{AA_j} = \left(\left\{\alpha_i, t_i\right\}_{i
+				\in S_{AA_j}}, y\right)$
+			\item Berechne $K_{1,i} = g^{\alpha_i} \cdot H'(GID)^{t_i}$ für jedes
+				Attribut $i \in S_{j, GID}$
+			\item Berechne $K_{2,i} = H'(i)^{y}$ für jedes Attribut $i \in S_{j,GID}$
+			\item \textbf{return} $sk_{j, GID} = \left\{ K_{1,i}, K_{2,i} \right\}_{i
+				\in S_{j, GID}}$
+		\end{enumerate}
 
 	\item \algitem{Transform}{}{PP, M_{sk}, p, C}{M_{tk}} Dieser Algorithmus
 		wird von einem Benutzer ausgeführt. Dieser besitzt eine Menge von
