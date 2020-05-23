@@ -34,19 +34,11 @@ CP-ABE abgeschlossen
 | *26.04.*
 | Single- und Multi-Authority, Überblick über PHOABE abgeschlossen
 
-| 
-| 10.05.
+| {chk}
+| *24.05.*
 | Einarbeitung in die Algorithmen von PHOABE abgeschlossen
 
 | 
-| *24.05.*
-| Sicherheitsbeweise der Algorithmen von PHOABE nachvollzogen
-
-| 
-| 31.05.
-| Dokumentation über PHOABE abgeschlossen
-
-| 
 | *07.06.*
-| (*Projektabschluss*) Ausarbeitung fertig
+| (*Projektabschluss*) Sicherheitsbeweise nachvollzogen
 |===
