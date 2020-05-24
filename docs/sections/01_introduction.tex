@@ -7,6 +7,18 @@ relativ junges Forschungsgebiet der Kryptographie darstellt. Es existieren
 zwar einige ABE-Schemata, diese sind jedoch für leistungsschwache Geräte eher
 ungeeignet.
 
+Zu Beginn widmet sich die Ausarbeitung den grundlegenden mathematischen
+Hintergründen, die benötigt werden, um die hier vorgestellten Schemata verstehen
+zu können. Dazu gehört vor allem die Definitionen von Zugriffsregeln bzw.
+-strukturen. In der Praxis verwendet man beispielsweise gerne Zugriffsstrukturen
+in Form eines binären Baumes, um eine oder mehrere Zugriffsregeln zu definieren.
+In den kryptografischen Algorithmen findet man jedoch häufig die Beschreibung
+von Zugriffsregeln durch sogenannte \textit{Linear-Secret-Sharing-Schemes} in
+Form einer Matrix. Dies stellt vor allem eine sehr viel elegantere Darstellung
+von Zugriffsregeln dar, als binäre Bäume. Da ein Baum jedoch wesentlich besser
+nachvollzogen werden kann, wird eine Zugriffsstruktur erst in Form eines Baumes
+definiert und dann später in eine Matrix umgewandelt.
+
 Diese Ausarbeitung beschäftigt sich hauptsächlich mit der Arbeit von
 \cite{phoabe}, welche ein neues attribut-basiertes Verschlüsselungsschema
 vorstellt: \textit{PHOABE}. Dieses Schema widmet sich bekannten Problemen der
