@@ -77,7 +77,7 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 			\item Setze den geheimen Schlüssel als $sk_{AA_j} = \left(
 				\left\{\alpha_i, t_i \;\vert\; i \in S_{AA_j}\right\}, y \right)$.
 			\item Berechne den öffentlichen Schlüssel \\
-				$pk_{AA_j} = \left( \left\{ e(g, g)^{\alpha_i}, g^{t_i} \;\vert\; i \in
+				$pk_{AA_j} = \left( \left\{ g^{\alpha_i}, g^{t_i} \;\vert\; i \in
 				S_{AA_j} \right\}, g^y \right)$.
 			\item \textbf{return} $\left( sk_{AA_j}, pk_{AA_j} \right)$.
 		\end{enumerate}
@@ -86,8 +86,8 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 		ver\-schlüs\-selt die Nachricht $m$ unter Angabe einer Menge der
 		öffent\-lich\-en Schlüssel $M_{pk} = \left\{ pk_{AA_j} \;\vert\; j \in N
 			\right\}$ und wird vom Datenbesitzer ausgeführt. Jeder dieser Schlüssel
-			werden von einer \textit{Attribute Authority} bereitgestellt. Zudem wird
-			eine Zugriffsregel $\Phi = \left( A, \rho \right)$ verwendet. Als Ausgabe
+			wird von einer \textit{Attribute Authority} bereitgestellt. Zudem wird
+			eine Zugriffsregel $\Phi$ verwendet. Als Ausgabe
 			wird ein Geheimtext $C$ erzeugt.
 		\begin{enumerate}
 			\item Wähle eine zufällige Zahl $x \in \mathbb{Z}^*_p$
@@ -241,7 +241,7 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 			$M_{pk}$ & Menge der öffentlichen Schlüssel aller Attribute Authorities \\
 			$A$ & Zugriffsstruktur in LSSS-Matrix-Darstellung \\
 			$\rho$ & Abbildung zum Auslesen einer Zeile von $A$ \\
-			$\Phi$ & Die Zugriffsregeln bestehend aus $\Phi = \left(A, \rho\right)$ \\
+			$\Phi$ & Eine Zugriffsstruktur \\
 			$C$ & Der aus der Nachricht erzeugte Geheimtext \\
 			$GID$ & Die Identität eines Benutzers \\
 			$S_{j, GID}$ & Menge von Attributen der $j$-ten Attibute Authority für den
