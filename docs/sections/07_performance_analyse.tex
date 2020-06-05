@@ -1,0 +1,37 @@
+\newpage
+\section{Performance Analyse}
+\paragraph{Schlüsselgröße.}
+Laut \cite{phoabe} beträgt die Speicherkapazität für einen Schlüssel eines
+Benutzers $2 \lvert S \rvert$, wobei $\lvert S \rvert$ die Anzahl der für
+den Benutzer zugewiesenen Attribute darstellt. Um dies nachzuvollziehen, müssen
+wir unsschauen den Keygen-Algorithmus einmal näher anschauen. Im ersten Schritt
+berechnet dieser für jedes Attribut $i \in S$ einen Wert $K_{1,i}$ und einen Wert
+$K_{2,i}$, wobei $S$ die Menge aller Attribute darstellt, die dem Benutzer
+zugewiesen wurden. Da sich der Schlüssel aus den beiden resultierenden Mengen
+zusammensetzt, besitzt dieser die Größe $\lvert S \rvert + \lvert S \rvert = 2
+\lvert S \rvert$.
+
+\paragraph{Größe des Transformationsschlüssels.}
+Die Größe eines Transformationsschlüssels beträgt $2 \lvert S \rvert + 3$. Auch
+hier schauen wir genauer auf den Transform-Algoritmus, um dies nachzuvollziehen.
+Zuerst wird festgestellt, welche Attribute für eine Entschlüsselung benötigt
+werden. Dies entspricht der Menge $S$, die alle Attribute für den Benutzer
+enthält. Zudem wird ein zufälliges $z \in \mathbb{Z}_p$ gewählt, welches
+einen zusätzlichen Teil des Transformationsschlüssels darstellt. Anschließend
+wird für jedes Attribut $i \in S$ der Wert $K_{1,i}^{1/z}$ berechnet. Als
+weitere Teile des Schlüssels werden die beiden Werte $g^{1/z}$ und
+$H(GID)^{1/z}$ berechnet. Die Größe des gesamten Schlüssels beträgt damit $1 +
+\lvert S \rvert + 1 + 1 = \lvert S \rvert + 3$.
+
+\paragraph{Geheimtextgröße.}
+Im Encrypt-Algorithmus wird der Geheimtext aus insgesamt drei Teilen gebildet.
+Die Größe dessen bildet sich daher ebenfalls aus genau drei Teilen und lässt
+sich als $N_{CT} = \text{size} (CT_{ABE}) + \text{size} (CT_{sym}) + \text{size}
+(V)$ beschreiben. Dabei stellt $CT_{ABE} = \left( h, C_0, C_{1,i}, C_{2,i},
+C_{3,i} \right)$ den at\-tri\-but-basierten Teil und $CT_{sym} =
+\text{encrypt}_{sym}\left(K_{sym}, m\right)$ die symmetrisch ver\-schlüs\-selte
+Nachricht dar.
+
+\paragraph{Kosten der Verschlüsselung.}
+\paragraph{Kosten der Entschlüsselung (Benutzer).}
+\paragraph{Kosten der Entschlüsselung (STCS).}
