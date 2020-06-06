@@ -3,6 +3,19 @@
 
 \newpage
 \section{Performance Analyse}
+Im Folgenden wird der Speicher- und Ressourcenverbrauch vom PHOABE-Schema
+diskutiert bzw. analysiert. Hierfür werden die in \cite{phoabe} definierten
+Symbole verwendet, um dies darzustellen.
+
+\begin{itemize}
+  \item $E_1$ stellt eine Potenzierung in $\mathbb{G}_1$ dar.
+  \item $E_T$ stellt eine Potenzierung in $\mathbb{G}_T$ dar.
+  \item $\tau_P$ stellt eine Ausführung der Pairing-Funktion $e$ dar.
+  \item $n$ stellt die Anzahl aller Attribute einer Zugriffsstruktur dar.
+  \item $\lvert S \rvert$ stellt die Anzahl aller Attribute dar, die einem
+    Benutzer zugeordnet wurden.
+\end{itemize}
+
 \paragraph{Schlüsselgröße.}
 Laut \cite{phoabe} beträgt die Speicherkapazität für einen Schlüssel eines
 Benutzers $2 \lvert S \rvert$, wobei $\lvert S \rvert$ die Anzahl der für
@@ -78,6 +91,34 @@ der Berechnungen beträgt damit $\mathcal{O}(encrypt) = 5n \cdot E_1 + E_T +
 3\mathcal{O}(H)$.
 
 \paragraph{Kosten der Entschlüsselung (Benutzer).}
-
+Es wird nun ein entscheidener Algorithmus des PHOABE-Schemas analysiert, der die
+Lauffähigkeit auf ressourcenarmen Geräten sicherstellen soll. In den meisten
+attribut-basierten Schemata ist der Decrypt-Algorithmus besonders in Bezug zu
+IoT unpraktikabel, da dieser zu viel Rechenleistung erfordert \cite{phoabe}. Es
+wird also nun analysiert, wie aufwändig dieser Algorithmus ist. Zu Beginn wird
+die bereits teilweise vom STCS entschlüsselte Nachricht $m'$ verwendet, um einen
+Wert $R = \frac{C_0}{e(g, g)^s}$ zu berechnen. Dies entspricht einer
+Potenzierung in $\mathbb{G}_T$. Anschließend wird mithilfe von Hashfunktionen
+ein Wert $R_0 = H_0(R)$ berechnet und validiert, ob $H_2(R_0 \;||\; CT_{sym}$
+gleich $V$ ist. Falls ja, wird der symmetrische Schlüssel $K_{sym} = H_1(R)$
+berechnet und zum Entschlüsseln der Nachricht $m = decrypt_{sym}(K_{sym},
+CT_{sym})$ verwendet. Insgesamt werden also eine Potentierung in
+$\mathbb{G}_T$ und drei Ausführungen von Hashfunktionen durchgeführt.
+Die Komplexität dieses Algorithmus' ist damit $\O{decrypt} = E_T + 3\O{H}$.
 
 \paragraph{Kosten der Entschlüsselung (STCS).}
+Nun soll der Aufwand für den STCS analysiert werden. Dieser hat die Aufgabe eine
+verschlüsselte Nachricht teilweise zu entschlüsseln, um den Rechenaufwand für
+den Endnutzer so gering wie möglich zu halten. Hierfür berechnet dieser für jede
+Zeile der LSSS-Matrix einen Wert
+\begin{align*}
+  R_i = \frac{e(g^{1/z}, C_{1,i}) \cdot e(H'(GID)^{1/z}, C_{3,i})}{e(g^{\alpha_i
+  / z} \cdot H'(GID)^{t_i/z}, C_{2, i})}.
+\end{align*}
+Hierbei wird ein Aufwand von $3\tau_P + 2E_1 + 2\O{H}$ erzeugt. Jedoch können
+die Potenzierungen in $\mathbb{G}_1$ und die Berechnungen der Hashwerte vorher
+berechnet und dann wiederverwendet werden. Dies reduziert den Aufwand auf
+$3\tau_P$. Da dies für $n$ Attribute durchgeführt werden muss, beträgt der
+Aufwand für diesen Schritt $3n\tau_P$. Anschließend wird die Ausgabe $m' =
+e(g, g)^{\frac{s}{z}}$ berechnet, welches zu einem Gesamtaufwand von
+$\O{decrypt_{out}} = 3n\tau_P + E_T$ führt.
