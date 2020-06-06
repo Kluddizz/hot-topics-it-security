@@ -1,3 +1,6 @@
+\newcommand{\sizeof}[1]{\small\texttt{size}\left( #1 \right)}
+\renewcommand{\O}[1]{\mathcal{O} \left( #1 \right)}
+
 \newpage
 \section{Performance Analyse}
 \paragraph{Schlüsselgröße.}
@@ -26,12 +29,55 @@ $H(GID)^{1/z}$ berechnet. Die Größe des gesamten Schlüssels beträgt damit $1
 \paragraph{Geheimtextgröße.}
 Im Encrypt-Algorithmus wird der Geheimtext aus insgesamt drei Teilen gebildet.
 Die Größe dessen bildet sich daher ebenfalls aus genau drei Teilen und lässt
-sich als $N_{CT} = \text{size} (CT_{ABE}) + \text{size} (CT_{sym}) + \text{size}
+sich als $\sizeof{CT} = \text{size} (CT_{ABE}) + \text{size} (CT_{sym}) + \text{size}
 (V)$ beschreiben. Dabei stellt $CT_{ABE} = \left( h, C_0, C_{1,i}, C_{2,i},
 C_{3,i} \right)$ den at\-tri\-but-basierten Teil und $CT_{sym} =
 \text{encrypt}_{sym}\left(K_{sym}, m\right)$ die symmetrisch ver\-schlüs\-selte
-Nachricht dar.
+Nachricht dar. Außerdem gibt der Algorithmus einen Verifizierungsschlüssel $V$
+zurück. Die Größe $\sizeof{V}$ beträgt damit $1$. Um \\ $\sizeof{CT_{ABE}}$ zu
+bestimmen, müssen wir uns die einzelnen Komponenten genauer anschauen. Die
+Komponenten $h$ und $C_0$ benötigen jeweils einen Speicherplatz während
+$C_{1,i}$, $C_{2,i}$ und $C_{3,i}$ für jedes Attribut innerhalb der
+Zugriffsstruktur berechnet werden und damit insgesamt drei mal der Anzahl an
+Attributen groß sind. Die Größe $\sizeof{CT_{ABE}}$ beträgt somit $2 + 3n$,
+wobei $n$ die Anzahl aller Attribute, die in dem Schema vorkommen, darstellt.
+Zuletzt muss noch die Größe von $\sizeof{CT_{sym}}$ bestimmt werden. Da
+$CT_{sym}$ lediglich die symmetrische Verschlüsselung einer Nachricht darstellt,
+beträgt der benötigte Speicherplatz zum Speichern dieser Variable $1$. Der
+gesamte Geheimtext, der sich aus all den Teilen zusammensetzt, benötigt daher
+$\sizeof{CT} = 2 + 3n + 1 + 1 = 4 + 3n$ Speichereinheiten.
 
 \paragraph{Kosten der Verschlüsselung.}
+Es soll nun auf die Komplexität der Verschlüsselung einer Nachricht eingegangen
+werden. Beginnen wir mit der Berechnung aller $q_i = e\left((g^y)^x,
+H'(a_i)\right)$ zum Rekonstruieren der LSSS-Matrix. Hier wird für jedes $q_i$
+eine Potenzierung in $\mathbb{G}_1$ und einmal der Hashfunktion über $a_i$
+ausgeführt. Da für jedes Attribut $a_i$ innerhalb der Zugriffsstruktur ein $q_i$
+berechnet wird, ergibt sich folgende Komplexität für diesen Teil: $n \cdot E_1 +
+n \cdot \mathcal{O}(H) + n \cdot \tau_P = n (E_1 + \mathcal{O}(H) + \tau_P)$.
+Darauf folgend wird $CT_{ABE} = (h, C_0, C_{1,i}, C_{2,i}, C_{3,i})$ berechnet.
+Die Komplexität von $CT_{ABE}$ wird also durch seine Komponenten bestimmt, die
+nun genauer untersucht werden.
+\begin{align*}
+  & h = g^a & \implies E_1 \\
+  & C_0 = R \cdot e(g, g)^s & \implies E_T \\
+  & C_{1,i} = g^{\lambda_{\rho(i)}}g^{\alpha_{\rho(i)}p_i} & \implies n \cdot 2E_1 \\
+  & C_{2,i} = g^{p_i} & \implies n \cdot E_1 \\
+  & C_{3,i} = g^{t_{\rho(i)}p_i}g^{\omega_i} & \implies n \cdot 2E_1
+\end{align*}
+Zudem wird eine Hashfunktion $H$ für die Berechnung von $R_0$, $K_{sym}$ und $V$
+ausgeführt. Insgesamt erhalten wir damit eine Komplexität von
+\begin{align*}
+  \O{encrypt} &= \O{\{ q_i \;\vert\; 0 \leq i < n \}} + \O{CT_{ABE}} + 3\O{H} \\
+  &= n (E_1 + \mathcal{O}(H) + \tau_P) + E_1 + 5n \cdot E_1
+  + E_T + 3\mathcal{O}(H).
+\end{align*}
+Da $h$ und alle $q_i$ lediglich einmal initial berechnet werden,
+müssen diese nicht bei jeder Verschlüsselung erneut bestimmt werden. Der Aufwand
+der Berechnungen beträgt damit $\mathcal{O}(encrypt) = 5n \cdot E_1 + E_T +
+3\mathcal{O}(H)$.
+
 \paragraph{Kosten der Entschlüsselung (Benutzer).}
+
+
 \paragraph{Kosten der Entschlüsselung (STCS).}
