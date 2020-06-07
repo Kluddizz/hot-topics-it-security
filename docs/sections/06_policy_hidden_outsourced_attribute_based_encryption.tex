@@ -189,13 +189,18 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 		den Geheimtext $C$.
 		\begin{enumerate}
 			\item Berechne für alle Zeilen der Matrix $A$ die Werte
-				\begin{equation*}
-					R_i = \frac{e(g^{1/z}, C_{1,i}) \cdot e(H'(GID)^{1/z},
-					C_{3,i})}{e(g^{\alpha_i / z} \cdot H'(GID)^{t_i/z}, C_{2, i})}
-				\end{equation*}
-				\begin{equation*}
-					= (e(g,g)^{\lambda_i} \cdot e(H'(GID), g)^{\omega_i})^{1/z}
-				\end{equation*}
+				\begin{align*}
+					R_i &= \frac{e(g^{1/z}, C_{1,i}) \cdot e(H'(GID)^{1/z},
+					C_{3,i})}{e(g^{\alpha_i / z} \cdot H'(GID)^{t_i/z}, C_{2, i})} \\
+							&= \frac{e(g^{1/z}, g^{\lambda_i}g^{\alpha_i p_i}) e(H'(GID)^{1/z},
+							g^{\omega_i}g^{t_i p_i})}{e(g^{\alpha_i / z} H'(GID)^{t_i / z},
+						g^{p_i})} \\
+							&= \frac{e(g, g)^{\frac{\lambda_i}{z}}e(g,g)^{\frac{\alpha_i
+							p_i}{z}} e(H'(GID), g)^{\frac{t_i p_i}{z}} e(H'(GID),
+						g)^{\frac{\omega_i}{z}}}{e(g,g)^{\frac{\alpha_i p_i}{z}} e(H'(GID),
+					g)^{\frac{t_i p_i}{z}}}\\
+							&= (e(g,g)^{\lambda_i} \cdot e(H'(GID), g)^{\omega_i})^{1/z}
+				\end{align*}
 			\item Wähle eine Menge $\left\{c_i \;\vert\; 0 \leq i < n\right\}$, sodass
 				folgende Eigenschaft erfüllt wird.
 				\begin{equation*}
