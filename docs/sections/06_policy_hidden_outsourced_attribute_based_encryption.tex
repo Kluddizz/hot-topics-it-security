@@ -215,11 +215,14 @@ folgende Symbole für die Darstellung der Komponenten des Schemas verwendet.
 		\begin{enumerate}
 			\item Berechne im ersten Schritt den Wert $R$. Besonders hierbei ist, dass
 				lediglich einmal Potenziert werden muss, ohne eine einziges
-				Pairing berechnen zu müssen.
-				\begin{equation*}
-				R = \frac{C_0}{(m')^{tsk_{GID}}} = \frac{C_0}{\left(e(g,
-				g)^{\frac{s}{z}}\right)^z} = \frac{C_0}{e(g, g)^s}
-				\end{equation*}
+				Pairing berechnen zu müssen, da $e(g, g)$ bereits vorher berechnet wurde
+				und wiederverwendet wird.
+				\begin{align*}
+					R &= \frac{C_0}{(m')^{tsk_{GID}}} = \frac{C_0}{(m')^z} \\
+						&= \frac{C_0}{\left(e(g, g)^{\frac{s}{z}}\right)^z} =
+						\frac{C_0}{e(g, g)^{\frac{sz}{z}}} \\
+						&= \frac{C_0}{e(g, g)^s}
+				\end{align*}
 			\item Berechne $R_0 = H_0(R)$ und prüfe, ob $H_2(R_0 \;||\; CT_{sym})$
 				einen Fehler $\bot$ liefert. Falls ja, beende den Algorithmus mit einem
 				Fehler. Ansonsten fahre mit dem Berechnen des symmetrischen Schlüssels
